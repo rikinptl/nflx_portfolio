@@ -198,6 +198,6 @@ export const mockProjects: Project[] = [
 export const mockWorkPermit: WorkPermit = {
   visaStatus: "Authorized to work for any employer",
   expiryDate: new Date("2027-12-31"),
-  summary: "Authorized to work for any employer with no requirement of sponsorship.",
+  summary: "I'm currently on a Authorized to work for any employer 🛂, which allows me to work in the USA! 🇺🇸, giving me the opportunity to build valuable experience and grow my career here. 🌟",
   additionalInfo: "Currently located in Dallas, Texas, United States. Fluent in Hindi (Full Professional), Gujarati (Native), and English (Full Professional)."
 };
