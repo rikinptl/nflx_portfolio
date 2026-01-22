@@ -196,8 +196,8 @@ export const mockProjects: Project[] = [
 ];
 
 export const mockWorkPermit: WorkPermit = {
-  visaStatus: "H-1B or similar work authorization",
+  visaStatus: "Authorized to work for any employer",
   expiryDate: new Date("2027-12-31"),
-  summary: "Authorized to work in the United States. Open to discussing sponsorship requirements for the right opportunity.",
+  summary: "Authorized to work for any employer with no requirement of sponsorship.",
   additionalInfo: "Currently located in Dallas, Texas, United States. Fluent in Hindi (Full Professional), Gujarati (Native), and English (Full Professional)."
 };
