@@ -1,24 +1,42 @@
 import React from 'react';
 import './Recommendations.css';
-import chrisProfilePic from '../images/chris.jpg'; // Adjust the path based on your directory structure
 
 const Recommendations: React.FC = () => {
   return (
-    <div className='timeline-container'>
+    <div className='recommendations-container'>
       <div className="recommendation-card">
         <div className="recommendation-header">
-          <img src={chrisProfilePic} alt="Chris Smith" className="profile-pic" />
+          <div className="profile-pic-placeholder">
+            <span>CS</span>
+          </div>
           <div>
-            <h3>Chris Smith</h3>
-            <p>Head of Kajima Community</p>
-            <p className="date">October 24, 2024</p>
+            <h3>Chintan Shah</h3>
+            <p>AI Solutions Engineer</p>
+            <p className="date">November 13, 2024 · Was Rikin's teacher</p>
           </div>
         </div>
         <div className="recommendation-body">
-          <p>✨ "It is with great pleasure that I write this reference for Rikin, who worked for us as a Data Engineer. During their time with us, they demonstrated exceptional technical expertise and a passion for data-driven solutions.</p>
-          <p>During their time with us, Rikin demonstrated strong technical expertise in data engineering, a passion for automation, and a collaborative spirit that greatly contributed to our team's success. They played a pivotal role in designing and implementing scalable data pipelines, consistently delivering high-quality solutions while meeting project deadlines. Their ability to quickly adapt to new technologies and their proactive approach to finding innovative solutions set them apart."</p>
-          <p>💼 "Rikin also showed exceptional teamwork and communication skills, effectively collaborating with cross-functional teams, including product managers, data scientists, and business stakeholders. Their professionalism, positive attitude, and dedication to their work made them an asset to the team."</p>
-          <p>🌟 "I have no doubt that Rikin will be a valuable addition to any organization, and I wholeheartedly recommend them for any future opportunities."</p>
+          <p>✨ "I had the pleasure of teaching Rikin in my Big Data course, and I was consistently impressed by their dedication, curiosity, and technical prowess. Throughout the course, they demonstrated an impressive grasp of complex topics, from data warehousing and distributed computing to real-time data processing with tools like Hadoop and Spark.</p>
+          <p>💼 "Rikin stood out not only for their analytical skills but also for their collaborative spirit. They were proactive in helping peers understand challenging concepts and contributed valuable insights during discussions. I'm confident that they will continue to excel in their career, bringing a blend of technical skill and teamwork to any project."</p>
+          <p>🌟 "I highly recommend Rikin to any organization looking for a driven and knowledgeable professional in the field of Big Data."</p>
+        </div>
+      </div>
+
+      <div className="recommendation-card">
+        <div className="recommendation-header">
+          <div className="profile-pic-placeholder">
+            <span>JT</span>
+          </div>
+          <div>
+            <h3>Jignesh Thaker</h3>
+            <p>Dean (I/c) Student Affairs | PhD | MTech-Gold Medalist | MBA | Lifelong Learner | Author | Reviewer</p>
+            <p className="date">September 2, 2023 · Was Rikin's mentor</p>
+          </div>
+        </div>
+        <div className="recommendation-body">
+          <p>✨ "I have known Mr. Rikin Patel since the first semester of his undergraduate studies. He has been one of the brightest students in my class. Rikin is incredibly self-sufficient and he always gives his best in whatever task he undertakes. I have often seen him work after college hours to meet deadlines."</p>
+          <p>💼 "He is quite generous in his efforts to acquaint himself with the new technologies and also has an indefatigable attitude towards the application of theories during the practical sessions. His strength is his commitment and dedication to his work."</p>
+          <p>🌟 "I believe that his endurance and analytical skills will contribute significantly to any assignment/role assigned to him. I recommend him and affirm that he has the required potential to perform exceptionally well in an intensive academic environment."</p>
         </div>
       </div>
     </div>
