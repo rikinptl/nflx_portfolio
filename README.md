@@ -1,13 +1,6 @@
-## 🌟 Sumanth Samala's Netflix inspired Portfolio 🌟 - https://sumanthsamala.com/
+## 🌟 RIKIN PATEL's Netflix inspired Portfolio 🌟
 
-Welcome to my personal portfolio project! 🚀 This website showcases my work, skills, and experiences in web development. It's designed to be lightweight, customizable, and professional while maintaining an approachable style.
-
-Explore specific subdomains tailored to different tech stacks:
-
-- 🌟 [java.sumanthsamala.com](https://java.sumanthsamala.com/) for Java Spring Boot-related work.
-- 🌟 [node.sumanthsamala.com](https://node.sumanthsamala.com/) for Node.js and backend development.
-- 🌟 [frontend.sumanthsamala.com](https://frontend.sumanthsamala.com/) for frontend development expertise.
-- 🌟 [ror.sumanthsamala.com](https://ror.sumanthsamala.com/) for Ruby on Rails projects.
+Welcome to my personal portfolio project! 🚀 This website showcases my work, skills, and experiences in data engineering and research. It's designed to be lightweight, customizable, and professional while maintaining an approachable style.
 
 ![Screenshot from 2024-12-08 19-19-06](https://github.com/user-attachments/assets/f8220485-16ec-48cf-8cb2-7853540c5724)
 
@@ -110,9 +103,9 @@ Your feedback is valuable and helps make this project better for everyone. Thank
 
 ## 📧 Contact Me
 
-- 💼 [Portfolio Website](https://sumanthsamala.com)
-- 📧 Email: [chintusamala96@gmail.com](mailto:chintusamala96@gmail.com)
-- 🔗 [LinkedIn](https://uk.linkedin.com/in/sumanth-samala-82431161)
+- 💼 Portfolio Website
+- 📧 Email: [rikinpatel.2620@gmail.com](mailto:rikinpatel.2620@gmail.com)
+- 🔗 [LinkedIn](https://www.linkedin.com/in/rknptl)
 
 ---
 

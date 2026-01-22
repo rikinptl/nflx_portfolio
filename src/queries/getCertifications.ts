@@ -1,20 +1,8 @@
 // queries/getCertifications.ts
-import datoCMSClient from './datoCMSClient';
 import { Certification } from '../types';
-
-const GET_CERTIFICATIONS = `
-  query {
-    allCertifications {
-      title
-      issuer
-      issuedDate
-      link
-      iconName
-    }
-  }
-`;
+import { mockCertifications } from '../mockData';
 
 export async function getCertifications(): Promise<Certification[]> {
-  const data = await datoCMSClient.request<{ allCertifications: Certification[] }>(GET_CERTIFICATIONS);
-  return data.allCertifications;
+  // Return mock data instead of API call
+  return Promise.resolve(mockCertifications);
 }

@@ -15,10 +15,10 @@ const Recommendations: React.FC = () => {
           </div>
         </div>
         <div className="recommendation-body">
-          <p>✨ "It is with great pleasure that I write this reference for Sumanth, who worked for us as a software developer at Kajima from June 2023. Unfortunately, due to a change in the company’s structure, we have made the difficult decision to make their position redundant. This in no way reflects on their performance, which was consistently excellent.</p>
-          <p>During their time with us, Sumanth demonstrated strong technical expertise, a passion for problem-solving, a willingness to learn, and a collaborative spirit that greatly contributed to our team’s success. They played a pivotal role in developing and maintaining key features of our software <strong>BookingsPlus</strong> and <strong>NHS Open Space</strong>, consistently delivering high-quality code while meeting project deadlines. Their ability to quickly adapt to new technologies and their proactive approach to finding innovative solutions set them apart."</p>
-          <p>💼 "Sumanth also showed exceptional teamwork and communication skills, effectively collaborating with cross-functional teams, including product managers, designers, and QA. Their professionalism, positive attitude, and dedication to their work made them an asset to the team."</p>
-          <p>🌟 "I have no doubt that Sumanth will be a valuable addition to any organization, and I wholeheartedly recommend them for any future opportunities."</p>
+          <p>✨ "It is with great pleasure that I write this reference for Rikin, who worked for us as a Data Engineer. During their time with us, they demonstrated exceptional technical expertise and a passion for data-driven solutions.</p>
+          <p>During their time with us, Rikin demonstrated strong technical expertise in data engineering, a passion for automation, and a collaborative spirit that greatly contributed to our team's success. They played a pivotal role in designing and implementing scalable data pipelines, consistently delivering high-quality solutions while meeting project deadlines. Their ability to quickly adapt to new technologies and their proactive approach to finding innovative solutions set them apart."</p>
+          <p>💼 "Rikin also showed exceptional teamwork and communication skills, effectively collaborating with cross-functional teams, including product managers, data scientists, and business stakeholders. Their professionalism, positive attitude, and dedication to their work made them an asset to the team."</p>
+          <p>🌟 "I have no doubt that Rikin will be a valuable addition to any organization, and I wholeheartedly recommend them for any future opportunities."</p>
         </div>
       </div>
     </div>
