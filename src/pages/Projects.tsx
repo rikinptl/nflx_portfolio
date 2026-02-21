@@ -31,7 +31,6 @@ const techIcons: { [key: string]: JSX.Element } = {
   'Netlify': <GrDeploy />,
   'Firebase': <SiFirebase />,
   'GCP': <FaGoogle />,
-  'Azure': <FaMicrosoft />,
   'Kubernetes': <GrKubernetes />,
   'Terraform': <SiTerraform />,
   'ArgoCD': <SiArgo />,

@@ -109,11 +109,11 @@ export const mockCertifications: Certification[] = [
     iconName: "data-analytics"
   },
   {
-    title: "Microsoft Certified: Azure Developer Associate",
-    issuer: "Microsoft",
+    title: "Google Cloud Professional Cloud Developer",
+    issuer: "Google",
     issuedDate: "2024",
-    link: "https://learn.microsoft.com/en-us/users/rikinpatel/credentials/79512c338e253b4e?ref=https%3A%2F%2Fwww.linkedin.com%2F",
-    iconName: "azure"
+    link: "https://googlecloudcertified.credential.net/",
+    iconName: "gcp"
   }
 ];
 
@@ -161,10 +161,10 @@ export const mockSkills: Skill[] = [
     icon: "aws"
   },
   {
-    name: "Azure",
+    name: "GCP",
     category: "Cloud",
-    description: "Microsoft Azure Developer Associate certified",
-    icon: "azure"
+    description: "Google Cloud Professional certified",
+    icon: "SiGooglecloud"
   }
 ];
 
@@ -196,8 +196,8 @@ export const mockProjects: Project[] = [
 ];
 
 export const mockWorkPermit: WorkPermit = {
-  visaStatus: "Authorized to work for any employer",
+  visaStatus: "Permanent resident",
   expiryDate: new Date("2027-12-31"),
-  summary: "I'm currently on a Authorized to work for any employer 🛂, which allows me to work in the USA! 🇺🇸, giving me the opportunity to build valuable experience and grow my career here. 🌟",
+  summary: "I'm a permanent resident of the United States authorized to work for any employer 🛂, which allows me to work in the USA! I have no visa restrictions, giving me the opportunity to build valuable experience and grow my career here. 🌟",
   additionalInfo: "Currently located in Dallas, Texas, United States. Fluent in Hindi (Full Professional), Gujarati (Native), and English (Full Professional)."
 };
