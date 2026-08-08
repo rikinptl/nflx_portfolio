@@ -5,34 +5,65 @@
   height: 100vh;
   background-color: #141414;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .netflix-logo {
-  width: 500px;
+  width: min(500px, 80vw);
   height: auto;
   opacity: 0;
-  transform: scale(0.8);
-  animation: fadeIn 0.5s forwards ease-in;
+  transform: scale(1);
+  animation: fadeIn 0.6s forwards ease-out;
+  will-change: transform, opacity;
 }
 
 @keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
   to {
     opacity: 1;
     transform: scale(1);
   }
 }
 
-.animate.netflix-logo {
-  animation: zoomOut 3s forwards ease-in-out;
+/*
+  Audio peaks ("tudum") at ~0.42–0.66s of a ~4s clip.
+  Hold still through the silence, then snap-zoom with the hit.
+*/
+.netflix-logo.animate {
+  animation: netflixTudum 4s forwards cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-@keyframes zoomOut {
-  0%, 80% {
-    transform: scale(0.8);
+@keyframes netflixTudum {
+  /* 0–0.4s: hold while audio is still quiet */
+  0%,
+  10% {
+    transform: scale(1);
     opacity: 1;
   }
-  100% {
-    transform: scale(3);
+
+  /* ~0.52s peak — punch with the hit */
+  13% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+
+  /* Slightly slower zoom toward camera + fade */
+  55% {
+    transform: scale(3.4);
     opacity: 0;
+  }
+
+  100% {
+    transform: scale(3.8);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .netflix-logo {
+    width: min(280px, 72vw);
   }
 }

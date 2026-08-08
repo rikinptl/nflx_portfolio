@@ -4,7 +4,7 @@
 }
 
 .continue-watching-row:hover {
- cursor: pointer;
+  cursor: pointer;
 }
 
 .row-title {
@@ -18,6 +18,7 @@
   overflow-x: auto;
   padding-bottom: 10px;
   scrollbar-width: none; /* For Firefox */
+  -webkit-overflow-scrolling: touch;
 }
 
 .card-row::-webkit-scrollbar {
@@ -71,4 +72,24 @@
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .continue-watching-row {
+    padding: 8px 16px 24px;
+  }
+
+  .row-title {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+
+  .pick-card {
+    min-width: 120px;
+    width: 120px;
+  }
+
+  .pick-label {
+    font-size: 0.85rem;
+  }
 }

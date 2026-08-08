@@ -6,77 +6,99 @@ interface BlogPost {
   title: string;
   link: string;
   description: string;
+  runtime: string;
 }
 
 const blogs: BlogPost[] = [
   {
-    title: "Human-Aligned Decision Transformers for Satellite Anomaly Response Operations",
-    link: "https://dev.to/rikinptl/human-aligned-decision-transformers-for-satellite-anomaly-response-operations-under-1l6l",
-    description: "Exploring how transformer-based sequential decision-making can bridge the gap between AI optimization and human values, regulations, and oversight requirements in critical satellite operations."
+    title: 'Human-Aligned Decision Transformers for Satellite Anomaly Response Operations',
+    link: 'https://dev.to/rikinptl/human-aligned-decision-transformers-for-satellite-anomaly-response-operations-under-1l6l',
+    description:
+      'Exploring how transformer-based sequential decision-making can bridge the gap between AI optimization and human values in critical satellite operations.',
+    runtime: '12 min',
   },
   {
-    title: "Building Scalable ETL Pipelines: Teradata to GCP Migration",
-    link: "https://dev.to/rikinptl",
-    description: "A comprehensive guide on migrating multi-terabyte datasets from Teradata to Google Cloud Platform, achieving 40% latency reduction and 50% cost savings."
+    title: 'Building Scalable ETL Pipelines: Teradata to GCP Migration',
+    link: 'https://dev.to/rikinptl',
+    description:
+      'Migrating multi-terabyte datasets from Teradata to GCP with latency cuts and cloud cost savings.',
+    runtime: '10 min',
   },
   {
-    title: "Automated Data Quality Validation with Apache Airflow",
-    link: "https://dev.to/rikinptl",
-    description: "Learn how to design and deploy end-to-end data quality validation pipelines that catch 95%+ of anomalies pre-production, improving overall data reliability."
+    title: 'Automated Data Quality Validation with Apache Airflow',
+    link: 'https://dev.to/rikinptl',
+    description:
+      'Designing end-to-end validation pipelines that catch anomalies before they hit production.',
+    runtime: '8 min',
   },
   {
-    title: "Creating Data Lineage Frameworks for Analytics Teams",
-    link: "https://dev.to/rikinptl",
-    description: "Building automated metadata extraction and data lineage frameworks that enable full dependency tracking and reduce troubleshooting time by 40%."
+    title: 'Creating Data Lineage Frameworks for Analytics Teams',
+    link: 'https://dev.to/rikinptl',
+    description:
+      'Automated metadata extraction and lineage that cuts troubleshooting time for analytics teams.',
+    runtime: '9 min',
   },
   {
-    title: "Optimizing Cloud Storage Costs with Automated File Cleanup",
-    link: "https://dev.to/rikinptl",
-    description: "How custom Airflow DAGs can prevent stale data buildup and reduce monthly cloud storage costs by 25-35% through automated legacy file cleanup."
+    title: 'Optimizing Cloud Storage Costs with Automated File Cleanup',
+    link: 'https://dev.to/rikinptl',
+    description:
+      'Custom Airflow DAGs that clear stale data and trim monthly storage spend.',
+    runtime: '7 min',
   },
   {
-    title: "Attention Detection in Human-Computer Interactions",
-    link: "https://dev.to/rikinptl",
-    description: "A comprehensive study on techniques utilized for attention detection, exploring facial landmark detection and computer vision approaches for HCI applications."
-  }
+    title: 'Attention Detection in Human-Computer Interactions',
+    link: 'https://dev.to/rikinptl',
+    description:
+      'A study of facial landmark and computer-vision techniques for attention detection in HCI.',
+    runtime: '11 min',
+  },
 ];
 
 const Blogs: React.FC = () => {
   return (
-    <div className="blogs-container">
-      <h2 className="blogs-title">✍️ My Blog Posts</h2>
-      <p className="blogs-intro">A collection of my thoughts and tutorials on data engineering, AI research, and automation.</p>
-      <div className="blogs-grid">
+    <div className="blogs-page">
+      <header className="nx-page-header">
+        <p className="nx-kicker">NEW RELEASES</p>
+        <h1 className="nx-title">Articles</h1>
+        <p className="nx-synopsis">
+          Essays and tutorials on data engineering, AI research, and automation.
+        </p>
+      </header>
+
+      <div className="blog-episode-list">
         {blogs.map((blog, index) => (
-          <a 
-            href={blog.link} 
-            key={index} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="blog-card" 
-            style={{ '--delay': `${index * 0.1}s` } as React.CSSProperties}
+          <a
+            key={blog.title}
+            href={blog.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="blog-episode"
+            style={{ animationDelay: `${index * 0.06}s` }}
           >
-            <div className="blog-card-header">
-              <div className="blog-icon animated-icon">
-                <FaDev />
-              </div>
-              <span className="blog-platform">Dev.to</span>
+            <div className="blog-episode-index">{String(index + 1).padStart(2, '0')}</div>
+            <div className="blog-episode-thumb" aria-hidden="true">
+              <FaDev />
             </div>
-            <div className="blog-info">
-              <h3 className="blog-title">{blog.title}</h3>
-              <p className="blog-description">{blog.description}</p>
+            <div className="blog-episode-body">
+              <div className="blog-episode-top">
+                <h3>{blog.title}</h3>
+                <span className="blog-runtime">{blog.runtime}</span>
+              </div>
+              <p>{blog.description}</p>
+              <span className="blog-platform">Dev.to · Play episode</span>
             </div>
           </a>
         ))}
       </div>
-      <div style={{ marginTop: '3rem', textAlign: 'center' }}>
-        <a 
-          href="https://dev.to/rikinptl" 
-          target="_blank" 
+
+      <div className="blogs-footer">
+        <a
+          href="https://dev.to/rikinptl"
+          target="_blank"
           rel="noopener noreferrer"
-          className="read-more-button"
+          className="blogs-more"
         >
-          Read More Articles on Dev.to →
+          See all on Dev.to
         </a>
       </div>
     </div>

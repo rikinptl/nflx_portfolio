@@ -1,48 +1,58 @@
 import React from 'react';
 import './Music.css';
-import albumCover1 from '../images/Hotelcalifornia.jpg'; // Hotel California by The Eagles
-import albumCover2 from '../images/ac-dc.jpg'; // Back in Black by AC/DC
-import albumCover3 from '../images/guns-n-roses.webp'; // Appetite for Destruction by Guns N' Roses
+import albumCover1 from '../images/Hotelcalifornia.jpg';
+import albumCover2 from '../images/ac-dc.jpg';
+import albumCover3 from '../images/guns-n-roses.webp';
 
-const favoriteGenres = ["Rock", "Classic Rock", "Hard Rock", "Blues", "Alternative"];
+const favoriteGenres = ['Rock', 'Classic Rock', 'Hard Rock', 'Blues', 'Alternative'];
 const favoriteAlbums = [
-  { title: "Hotel California", artist: "The Eagles", imgSrc: albumCover1 },
-  { title: "Back in Black", artist: "AC/DC", imgSrc: albumCover2 },
-  { title: "Appetite for Destruction", artist: "Guns N' Roses", imgSrc: albumCover3 },
+  { title: 'Hotel California', artist: 'The Eagles', imgSrc: albumCover1, progress: 72 },
+  { title: 'Back in Black', artist: 'AC/DC', imgSrc: albumCover2, progress: 54 },
+  { title: 'Appetite for Destruction', artist: "Guns N' Roses", imgSrc: albumCover3, progress: 88 },
 ];
 
 const Music: React.FC = () => {
   return (
     <div className="music-page">
-      <div className="quote">
-        <p>“Rock and Roll isn’t a genre, it’s a way of life.” 🎸</p>
-      </div>
+      <header className="nx-page-header">
+        <p className="nx-kicker">MY LIST</p>
+        <h1 className="nx-title">Soundtrack</h1>
+        <p className="nx-synopsis">
+          Rock isn’t just a genre — it’s the score behind late-night builds and long drives.
+        </p>
+      </header>
 
-      <div className="genre-section">
-        <h3>Explore by Genre</h3>
-        <div className="genres">
+      <section className="music-rail">
+        <h2 className="rail-title">Browse by Genre</h2>
+        <div className="genre-shelf">
           {favoriteGenres.map((genre, index) => (
-            <div key={index} className="genre-card" style={{ animationDelay: `${index * 0.2}s` }}>
-              <p>{genre}</p>
+            <div
+              key={genre}
+              className={`genre-tile tint-${index % 5}`}
+            >
+              <span>{genre}</span>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      <div className="albums-section">
-        <h3>Favorite Albums</h3>
-        <div className="albums">
-          {favoriteAlbums.map((album, index) => (
-            <div key={index} className="album-card" style={{ animationDelay: `${index * 0.3}s` }}>
-              <img src={album.imgSrc} alt={album.title} className="album-image" />
-              <div className="album-details">
-                <h4>{album.title}</h4>
-                <p>by {album.artist}</p>
+      <section className="music-rail">
+        <h2 className="rail-title">Continue Listening</h2>
+        <div className="album-shelf">
+          {favoriteAlbums.map((album) => (
+            <article key={album.title} className="album-poster">
+              <div className="album-art-wrap">
+                <img src={album.imgSrc} alt={album.title} className="album-art" />
+                <div className="album-progress" aria-hidden="true">
+                  <div style={{ width: `${album.progress}%` }} />
+                </div>
               </div>
-            </div>
+              <h3>{album.title}</h3>
+              <p>{album.artist}</p>
+            </article>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 };

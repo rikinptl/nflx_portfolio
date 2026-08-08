@@ -1,155 +1,190 @@
-.contact-container {
-  padding: 100px 20px;
-  background-color: #141414;
-  color: #e6e6e6;
-  text-align: center;
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-.linkedin-badge-custom {
+.nx-loading {
+  min-height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #222;
-  border-radius: 8px;
-  padding: 15px 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  color: #e6e6e6;
-  max-width: 350px;
-  margin: 0 auto;
+  background: #141414;
+  color: #999;
 }
 
-.badge-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin-right: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  object-fit: cover;
-  object-position: center;
-}
-
-.badge-content {
-  text-align: left;
-}
-
-.badge-name {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin: 0;
+.contact-page {
+  min-height: 100vh;
+  padding: 5.5rem 3rem 3.5rem;
+  background:
+    radial-gradient(ellipse 70% 45% at 80% 10%, rgba(229, 9, 20, 0.18), transparent 55%),
+    #141414;
   color: #fff;
+  box-sizing: border-box;
 }
 
-.badge-title {
+.contact-cast {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: end;
+  max-width: 980px;
+  animation: nxRise 0.65s ease-out;
+}
+
+.contact-portrait {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 6px;
+  background-color: #1a1a1a;
+  background-size: cover;
+  background-position: center top;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.contact-page .nx-kicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: #e50914;
+}
+
+.contact-name {
+  margin: 0 0 0.85rem;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
+
+.contact-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #d2d2d2;
+}
+
+.contact-meta .match {
+  color: #46d369;
+}
+
+.contact-meta .badge {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.72rem;
+}
+
+.contact-synopsis {
+  margin: 0 0 0.75rem;
+  max-width: 36rem;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: #cfcfcf;
+}
+
+.contact-credit {
+  margin: 0 0 1.25rem;
   font-size: 0.9rem;
+  color: #999;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.contact-rail {
+  margin-top: 2.5rem;
+  max-width: 980px;
+  animation: nxRise 0.75s ease-out 0.1s both;
+}
+
+.contact-rail .rail-title {
+  margin: 0 0 0.9rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #e5e5e5;
+}
+
+.contact-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.contact-tile {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  padding: 1.1rem 1rem;
+  border-radius: 6px;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-tile svg {
+  font-size: 1.25rem;
+  color: #e50914;
+  flex-shrink: 0;
+}
+
+.contact-tile:hover {
+  transform: translateY(-3px);
+  border-color: rgba(229, 9, 20, 0.45);
+}
+
+.contact-tile-label {
   margin: 0;
-  color: #aaa;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #999;
 }
 
-.badge-description {
-  font-size: 0.85rem;
-  margin: 5px 0;
-  color: #ccc;
+.contact-tile-value {
+  margin: 0.2rem 0 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  word-break: break-word;
 }
 
-.badge-company {
-  font-size: 0.85rem;
-  color: #888;
-}
-
-.badge-link {
-  display: inline-flex;
-  align-items: center;
-  background-color: #0077b5;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-weight: bold;
-  text-decoration: none;
-  margin-top: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.badge-link:hover {
-  background-color: #005983;
-}
-
-.linkedin-icon {
-  margin-right: 5px;
-}
-
-.contact-header p {
-  font-size: 1.2rem;
-  color: #ccc;
-  margin: 20px 0 30px;
-}
-
-.contact-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #1e1e1e;
-  padding: 10px 20px;
-  border-radius: 25px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.contact-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(214, 43, 43, 0.6);
-}
-
-.contact-icon {
-  font-size: 1.5rem;
-  color: #d62b2b;
-}
-
-.contact-link {
-  color: #fff;
-  font-size: 1.1rem;
-  text-decoration: none;
-}
-
-.contact-link:hover {
-  text-decoration: underline;
-}
-
-.contact-fun {
-  margin-top: 30px;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #e6e6e6;
-}
-
-.coffee-icon {
-  font-size: 2rem;
-  color: #ff9900;
-  animation: swing 1s infinite ease-in-out;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes swing {
-  0%, 100% {
-    transform: rotate(0deg);
+@keyframes nxRise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
   }
-  50% {
-    transform: rotate(30deg);
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 800px) {
+  .contact-page {
+    padding: 5rem 1.25rem 3rem;
+  }
+
+  .contact-cast {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-portrait {
+    max-width: 240px;
+  }
+
+  .contact-tiles {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-actions .play-button,
+  .contact-actions .more-info-button {
+    flex: 1 1 0;
+    justify-content: center;
   }
 }

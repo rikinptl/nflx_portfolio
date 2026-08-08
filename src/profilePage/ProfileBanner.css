@@ -1,16 +1,16 @@
 .profile-banner {
   display: flex;
   align-items: flex-end;
-  justify-content: left;
+  justify-content: flex-start;
   background-size: cover;
   background-position: center;
   color: #fff;
   position: relative;
-  padding-bottom: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
   padding: 40px 20px 20px 20px;
+  box-sizing: border-box;
 }
 
 .profile-banner::before {
@@ -20,34 +20,55 @@
   left: 0;
   height: 100%;
   width: 100%;
+  pointer-events: none;
+}
+
+.profile-banner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 55%;
+  background: linear-gradient(
+    to top,
+    rgba(20, 20, 20, 0.95) 0%,
+    rgba(20, 20, 20, 0.7) 40%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 .banner-content {
   position: relative;
+  z-index: 1;
   max-width: 1000px;
   font-weight: bold;
   width: 100%;
-  padding: 50px 0px;
+  padding: 50px 0;
   box-sizing: border-box;
   padding-top: 10px;
-  font-weight: bold;
 }
 
 .banner-headline {
   font-size: 2.5rem;
-  margin-bottom: 10px;
+  margin: 0 0 10px;
+  line-height: 1.15;
 }
 
 .banner-description {
-  font-size: 1rem;
-  margin-bottom: 20px;
   font-size: 14px;
+  margin: 0 0 20px;
+  font-weight: 400;
+  line-height: 1.45;
+  max-width: 42rem;
 }
 
 .banner-buttons {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: stretch;
 }
 
 .banner-button {
@@ -74,38 +95,72 @@
   background-color: #b81d24;
 }
 
-/* Responsive Adjustments */
+/* Responsive Adjustments — Netflix mobile billboard */
 @media (max-width: 768px) {
+  .profile-banner {
+    padding: 0 16px 24px;
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
+
+  .profile-banner::after {
+    height: 65%;
+  }
+
   .banner-content {
     max-width: 100%;
-  }
-  .profile-banner {
-    padding: 60px 20px;
-    align-items: center;
-    justify-content: center;
+    padding: 0;
+    padding-bottom: env(safe-area-inset-bottom, 0);
   }
 
   .banner-headline {
-    font-size: 2rem;
-    margin-top: 10rem;
+    font-size: 1.65rem;
+    margin: 0 0 8px;
+    margin-top: 0;
+    letter-spacing: -0.02em;
   }
 
   .banner-description {
-    line-height: 1.5;
-    font-size: 12px;
+    font-size: 13px;
+    line-height: 1.4;
+    margin: 0 0 14px;
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
   }
 
-  /* Button adjustments */
   .banner-buttons {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
   }
 
-  .banner-button {
-    width: auto;
-    padding: 10px 15px;
+  .banner-buttons .play-button,
+  .banner-buttons .more-info-button {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+    padding: 10px 12px;
+    border-radius: 4px;
+  }
+
+  .banner-buttons .play-button .spacer,
+  .banner-buttons .more-info-button .spacer {
+    width: 0.5rem;
+  }
+
+  .banner-buttons .play-button .label,
+  .banner-buttons .more-info-button .label {
     font-size: 0.9rem;
   }
-}
 
+  .banner-buttons .play-button svg,
+  .banner-buttons .more-info-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}

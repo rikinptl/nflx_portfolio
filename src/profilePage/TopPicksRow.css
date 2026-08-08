@@ -1,6 +1,6 @@
 .top-picks-row {
   margin: 20px 0;
-  padding: 10px 20px
+  padding: 10px 20px;
 }
 
 .row-title {
@@ -13,11 +13,21 @@
 .card-row {
   display: flex;
   gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.card-row::-webkit-scrollbar {
+  display: none;
 }
 
 .pick-card {
   position: relative;
   width: 250px;
+  min-width: 250px;
+  flex: 0 0 auto;
   height: 200px;
   border-radius: 8px;
   overflow: hidden;
@@ -93,5 +103,43 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .top-picks-row {
+    margin: 12px 0 8px;
+    padding: 8px 16px;
+  }
+
+  .row-title {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+
+  .card-row {
+    gap: 10px;
+  }
+
+  .pick-card {
+    width: 140px;
+    min-width: 140px;
+    height: 200px;
+    border-radius: 4px;
+  }
+
+  .pick-label {
+    font-size: 0.95rem;
+  }
+
+  .overlay {
+    opacity: 1;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.75) 0%,
+      transparent 55%
+    );
+    align-items: flex-end;
+    padding-bottom: 10px;
   }
 }

@@ -1,10 +1,11 @@
 .profile-page {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   height: 75vh;
   color: #fff;
   background-size: cover;
   background-position: center;
+  position: relative;
 }
 
 h1 {
@@ -14,7 +15,13 @@ h1 {
 
 @media (max-width: 768px) {
   .profile-page {
-    height: 100vh;
-    padding-bottom: 5rem;
+    height: min(85vh, 640px);
+    min-height: 480px;
+    padding-bottom: 0;
+    background-color: #141414;
+    background-repeat: no-repeat;
+    /* Zoom out from cover so more of the GIF is visible */
+    background-size: auto 78%;
+    background-position: center 12%;
   }
 }

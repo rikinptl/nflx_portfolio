@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
 import { MdOutlineWork as WorkIcon } from 'react-icons/md';
 import { IoSchool as SchoolIcon } from 'react-icons/io5';
-import { FaStar as StarIcon } from 'react-icons/fa';
 import './WorkExperience.css';
 import { TimelineItem } from '../types';
 import { getTimeline } from '../queries/getTimeline';
 
-
 const WorkExperience: React.FC = () => {
-
   const [timeLineData, setTimeLineData] = useState<TimelineItem[] | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   useEffect(() => {
     async function fetchTimelineItem() {
@@ -21,62 +17,99 @@ const WorkExperience: React.FC = () => {
     fetchTimelineItem();
   }, []);
 
+  if (!timeLineData) return <div className="nx-loading">Loading...</div>;
 
-  if (!timeLineData) return <div>Loading...</div>;
-  console.log("🚀 ~ timeLineData:", timeLineData)
+  const work = timeLineData.filter((item) => item.timelineType === 'work');
+  const education = timeLineData.filter((item) => item.timelineType === 'education');
+
+  const renderEpisode = (item: TimelineItem, index: number, seasonLabel: string) => {
+    const isOpen = openIndex === index;
+    const points = Array.isArray(item.summaryPoints)
+      ? item.summaryPoints
+      : [String(item.summaryPoints)];
+    const tags = item.techStack
+      ? item.techStack.split(',').map((t) => t.trim()).filter(Boolean)
+      : [];
+
+    return (
+      <button
+        type="button"
+        key={`${item.name}-${index}`}
+        className={`episode-row ${isOpen ? 'is-open' : ''} ${index === 0 && item.timelineType === 'work' ? 'is-current' : ''}`}
+        onClick={() => setOpenIndex(isOpen ? null : index)}
+      >
+        <div className="episode-index">{String(index + 1).padStart(2, '0')}</div>
+        <div className="episode-body">
+          <div className="episode-top">
+            <div className="episode-heading">
+              <span className="episode-season">{seasonLabel}</span>
+              <h3 className="episode-title">
+                {item.timelineType === 'work' ? item.title : item.name}
+              </h3>
+              <p className="episode-subtitle">
+                {item.timelineType === 'work' ? item.name : item.title}
+              </p>
+            </div>
+            <div className="episode-meta">
+              <span className="episode-runtime">{item.dateRange}</span>
+              <span className="episode-icon" aria-hidden="true">
+                {item.timelineType === 'work' ? <WorkIcon /> : <SchoolIcon />}
+              </span>
+            </div>
+          </div>
+
+          {index === 0 && item.timelineType === 'work' && (
+            <div className="episode-progress" aria-hidden="true">
+              <div className="episode-progress-bar" />
+            </div>
+          )}
+
+          {tags.length > 0 && (
+            <div className="episode-tags">
+              {tags.slice(0, 6).map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          )}
+
+          {isOpen && (
+            <ul className="episode-synopsis">
+              {points.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </button>
+    );
+  };
 
   return (
-    <>
-      <div className="timeline-container">
-        <h2 className="timeline-title">📅 Work Experience & Education Timeline</h2>
-      </div>
-      <VerticalTimeline>
-        {timeLineData.map((item, index) => (
-          <VerticalTimelineElement
-            key={index}
-            className={`vertical-timeline-element--${item.timelineType}`}
-            contentStyle={
-              item.timelineType === "work"
-                ? index === 0
-                  ? { background: 'rgb(33, 150, 243)', color: '#fff' }
-                  : { background: 'rgb(240, 240, 240)', color: '#fff' }
-                : { background: 'rgb(255, 224, 230)', color: '#fff' } // Lighter red for education
-            }
-            contentArrowStyle={
-              item.timelineType === "work"
-                ? { borderRight: index === 0 ? '7px solid rgb(33, 150, 243)' : '7px solid rgb(240, 240, 240)' }
-                : { borderRight: '7px solid rgb(255, 224, 230)' }
-            }
-            date={item.dateRange}
-            iconStyle={
-              item.timelineType === "work"
-                ? { background: 'rgb(33, 150, 243)', color: '#fff' }
-                : { background: 'rgb(255, 160, 200)', color: '#fff' } // Softer red for education icon
-            }
-            icon={item.timelineType === "work" ? <WorkIcon /> : <SchoolIcon />}
-          >
-            {item.timelineType === "work" ? (
-              <div style={{ color: 'black' }}>
-                <h3 className="vertical-timeline-element-title">{item.title}</h3>
-                <h4 className="vertical-timeline-element-subtitle">{item.name}</h4>
-                <p className="vertical-timeline-element-tech">🔧 {item.techStack}</p>
-                <p>{item.summaryPoints}</p>
-              </div>
-            ) : (
-              <div style={{ color: 'black' }}>
-                <h3 className="vertical-timeline-element-title">{item.name}</h3>
-                <h4 className="vertical-timeline-element-subtitle">{item.title}</h4>
-                <p>{item.summaryPoints}</p>
-              </div>
-            )}
-          </VerticalTimelineElement>
-        ))}
-        <VerticalTimelineElement
-          iconStyle={{ background: 'rgb(16, 204, 82)', color: '#fff' }}
-          icon={<StarIcon />}
-        />
-      </VerticalTimeline>
-    </>
+    <div className="work-experience-page">
+      <header className="nx-page-header">
+        <p className="nx-kicker">RIKIN ORIGINALS</p>
+        <h1 className="nx-title">Career Episodes</h1>
+        <p className="nx-synopsis">
+          Work seasons and education specials — tap an episode for the full synopsis.
+        </p>
+      </header>
+
+      <section className="episode-section">
+        <h2 className="rail-title">Season 1 · Professional</h2>
+        <div className="episode-list">
+          {work.map((item, i) => renderEpisode(item, i, `S1 E${i + 1}`))}
+        </div>
+      </section>
+
+      <section className="episode-section">
+        <h2 className="rail-title">Specials · Education</h2>
+        <div className="episode-list">
+          {education.map((item, i) =>
+            renderEpisode(item, work.length + i, `SP ${i + 1}`)
+          )}
+        </div>
+      </section>
+    </div>
   );
 };
 

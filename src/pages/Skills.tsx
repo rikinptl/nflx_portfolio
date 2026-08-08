@@ -1,75 +1,110 @@
 import React, { useEffect, useState } from 'react';
 import './Skills.css';
 import { getSkills } from '../queries/getSkills';
-
-import { FaReact, FaNodeJs, FaAws, FaDocker, FaJava } from 'react-icons/fa';
-import { SiRubyonrails, SiTypescript, SiPostgresql, SiMysql, SiKubernetes, SiGooglecloud, SiSpringboot, SiPhp, SiNetlify, SiHeroku, SiRabbitmq, SiImessage } from 'react-icons/si';
+import {
+  FaAws,
+  FaPython,
+  FaDatabase,
+  FaRobot,
+  FaLightbulb,
+  FaSearch,
+  FaCloud,
+} from 'react-icons/fa';
+import { SiMicrosoftazure, SiGooglecloud } from 'react-icons/si';
 import { Skill } from '../types';
+import { IconType } from 'react-icons';
 
-const iconMap: { [key: string]: JSX.Element } = {
-  SiRubyonrails: <SiRubyonrails />,
-  FaNodeJs: <FaNodeJs />,
-  SiSpringboot: <SiSpringboot />,
-  FaJava: <FaJava />,
-  SiPhp: <SiPhp />,
-  FaReact: <FaReact />,
-  SiTypescript: <SiTypescript />,
-  FaAws: <FaAws />,
-  FaDocker: <FaDocker />,
-  SiPostgresql: <SiPostgresql />,
-  SiMysql: <SiMysql />,
-  SiKubernetes: <SiKubernetes />,
-  SiGooglecloud: <SiGooglecloud />,
-  SiHeroku: <SiHeroku />,
-  SiNetlify: <SiNetlify />,
-  SiRabbitmq: <SiRabbitmq />,
-  SiImessage: <SiImessage />,
+const iconMap: { [key: string]: IconType } = {
+  research: FaSearch,
+  entrepreneurship: FaLightbulb,
+  robotics: FaRobot,
+  'data-engineering': FaDatabase,
+  python: FaPython,
+  sql: FaDatabase,
+  aws: FaAws,
+  azure: SiMicrosoftazure,
+  gcp: SiGooglecloud,
+  SiGooglecloud: SiGooglecloud,
+  cloud: FaCloud,
 };
 
-
 const Skills: React.FC = () => {
-
   const [skillsData, setSkillsData] = useState<Skill[]>([]);
+  const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchSkills() {
       const data = await getSkills();
       setSkillsData(data);
     }
-
-    fetchSkills()
+    fetchSkills();
   }, []);
 
-  if (skillsData.length === 0) return <div>Loading...</div>;
+  if (skillsData.length === 0) return <div className="nx-loading">Loading...</div>;
 
-  const skillsByCategory = skillsData.reduce((acc: any, skill: any) => {
+  const skillsByCategory = skillsData.reduce<Record<string, Skill[]>>((acc, skill) => {
     if (!acc[skill.category]) acc[skill.category] = [];
     acc[skill.category].push(skill);
     return acc;
   }, {});
 
+  const topSkills = skillsData.slice(0, 5);
 
   return (
-    <div className="skills-container">
-      {Object.keys(skillsByCategory).map((category, index) => (
-        <div key={index} className="skill-category">
-          <h3 className="category-title">{category}</h3>
-          <div className="skills-grid">
-            {skillsByCategory[category].map((skill: any, idx: number) => (
-              <div key={idx} className="skill-card">
-                <div className="icon">{iconMap[skill.icon] || <FaReact />}</div>
-                <h3 className="skill-name">
-                  {skill.name.split('').map((letter: any, i: number) => (
-                    <span key={i} className="letter" style={{ animationDelay: `${i * 0.05}s` }}>
-                      {letter}
-                    </span>
-                  ))}
-                </h3>
-                <p className="skill-description">{skill.description}</p>
+    <div className="skills-page">
+      <header className="nx-page-header">
+        <p className="nx-kicker">BROWSE BY GENRE</p>
+        <h1 className="nx-title">Skills</h1>
+        <p className="nx-synopsis">
+          A shelf of tools, stacks, and strengths — hover a title for the synopsis.
+        </p>
+      </header>
+
+      <section className="skills-rail">
+        <h2 className="rail-title">Top 5 · Today</h2>
+        <div className="top10-row">
+          {topSkills.map((skill, index) => {
+            const Icon = iconMap[skill.icon] || FaLightbulb;
+            return (
+              <div key={skill.name} className="top10-card">
+                <span className="top10-rank">{index + 1}</span>
+                <div className="top10-body">
+                  <Icon className="top10-icon" />
+                  <p>{skill.name}</p>
+                </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
+      </section>
+
+      {Object.keys(skillsByCategory).map((category) => (
+        <section key={category} className="skills-rail">
+          <h2 className="rail-title">{category}</h2>
+          <div className="skills-shelf">
+            {skillsByCategory[category].map((skill) => {
+              const Icon = iconMap[skill.icon] || FaLightbulb;
+              const isActive = active === skill.name;
+              return (
+                <button
+                  type="button"
+                  key={skill.name}
+                  className={`skill-tile ${isActive ? 'is-active' : ''}`}
+                  onMouseEnter={() => setActive(skill.name)}
+                  onMouseLeave={() => setActive(null)}
+                  onFocus={() => setActive(skill.name)}
+                  onBlur={() => setActive(null)}
+                >
+                  <Icon className="skill-tile-icon" />
+                  <h3>{skill.name}</h3>
+                  <p className={`skill-tile-desc ${isActive ? 'show' : ''}`}>
+                    {skill.description}
+                  </p>
+                </button>
+              );
+            })}
+          </div>
+        </section>
       ))}
     </div>
   );
