@@ -1,0 +1,16 @@
+.places-page .nx-poster-art {
+  background-size: cover;
+  background-position: center;
+}
+
+.place-rank {
+  position: absolute;
+  left: 0.65rem;
+  bottom: 0.45rem;
+  font-size: 2rem;
+  font-weight: 900;
+  color: rgba(20, 20, 20, 0.85);
+  -webkit-text-stroke: 2px #e50914;
+  paint-order: stroke fill;
+  z-index: 1;
+}

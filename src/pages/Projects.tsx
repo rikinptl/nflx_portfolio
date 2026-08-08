@@ -14,6 +14,8 @@ import {
   FaJenkins,
   FaPython,
   FaVuejs,
+  FaPlay,
+  FaExternalLinkAlt,
 } from 'react-icons/fa';
 import {
   SiRubyonrails,
@@ -28,6 +30,7 @@ import {
   SiTerraform,
   SiArgo,
   SiApacheairflow,
+  SiIeee,
 } from 'react-icons/si';
 import { GrDeploy, GrKubernetes } from 'react-icons/gr';
 import { Project } from '../types';
@@ -91,6 +94,8 @@ const techIcons: { [key: string]: JSX.Element } = {
   'Cloud Services': <FaAws />,
   'Automation Tools': <FaPython />,
   'Research Methodologies': <FaDatabase />,
+  IEEE: <SiIeee />,
+  HCI: <FaDatabase />,
 };
 
 const Projects: React.FC = () => {
@@ -106,29 +111,65 @@ const Projects: React.FC = () => {
 
   if (projects.length === 0) return <div className="nx-loading">Loading...</div>;
 
-  const [featured, ...rest] = projects;
+  const publications = projects.filter((p) => p.category === 'publication' || p.link?.includes('ieee'));
+  const builds = projects.filter((p) => p.category !== 'publication' && !p.link?.includes('ieee'));
+  const featured = publications[0] || builds[0] || projects[0];
   const featuredTech = featured.techUsed.split(',').map((t) => t.trim()).filter(Boolean);
+  const moreLikeThis = builds.filter((p) => p.title !== featured.title);
 
   return (
-    <div className="projects-page">
+    <div className="nx-page projects-page">
       <section
-        className="project-featured"
+        className="nx-billboard"
         style={{ backgroundImage: `url(${featured.image.url})` }}
       >
-        <div className="project-featured-shade" />
-        <div className="project-featured-content">
-          <p className="nx-kicker">FEATURED TITLE</p>
-          <h1 className="project-featured-title">{featured.title}</h1>
-          <div className="project-featured-meta">
-            <span className="match">97% Match</span>
-            <span className="badge">HD</span>
+        <div className="nx-billboard-shade" />
+        <div className="nx-billboard-content">
+          <p className="nx-original">
+            {featured.category === 'publication' ? 'IEEE PUBLICATION' : 'FEATURED TITLE'}
+          </p>
+          <h1 className="nx-billboard-title">{featured.title}</h1>
+          <div className="nx-meta">
+            <span className="nx-match">
+              {featured.category === 'publication' ? 'Peer Reviewed' : '97% Match'}
+            </span>
+            <span className="nx-chip">HD</span>
             {featuredTech.slice(0, 3).map((tech) => (
-              <span key={tech} className="genre">
+              <span key={tech} className="nx-muted">
                 {tech}
               </span>
             ))}
           </div>
-          <p className="project-featured-synopsis">{featured.description}</p>
+          <p className="nx-billboard-synopsis">{featured.description}</p>
+          <div className="nx-actions">
+            {featured.link ? (
+              <>
+                <a
+                  className="nx-btn nx-btn-play"
+                  href={featured.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaPlay /> Open Paper
+                </a>
+                <a
+                  className="nx-btn nx-btn-secondary"
+                  href={featured.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaExternalLinkAlt /> IEEE Xplore
+                </a>
+              </>
+            ) : (
+              <>
+                <span className="nx-btn nx-btn-play">
+                  <FaPlay /> Play
+                </span>
+                <span className="nx-btn nx-btn-secondary">More Info</span>
+              </>
+            )}
+          </div>
           <div className="project-featured-tech">
             {featuredTech.map((tech) => (
               <span key={tech}>
@@ -139,17 +180,59 @@ const Projects: React.FC = () => {
         </div>
       </section>
 
-      {rest.length > 0 && (
-        <section className="projects-rail">
-          <h2 className="rail-title">More Like This</h2>
-          <div className="projects-shelf">
-            {rest.map((project) => (
-              <article key={project.title} className="project-poster">
+      {publications.length > 0 && (
+        <section className="nx-rail">
+          <h2 className="nx-rail-title">IEEE Publications</h2>
+          <div className="nx-shelf">
+            {publications.map((project) => (
+              <a
+                key={project.title}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nx-poster project-poster"
+              >
                 <div
-                  className="project-poster-art"
+                  className="nx-poster-art project-poster-art"
                   style={{ backgroundImage: `url(${project.image.url})` }}
-                />
-                <div className="project-poster-info">
+                >
+                  <div className="nx-poster-overlay">
+                    <span className="nx-play-circle">
+                      <FaPlay />
+                    </span>
+                  </div>
+                  <span className="pub-badge">IEEE</span>
+                </div>
+                <div className="nx-poster-body">
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <span className="pub-link">
+                    View on IEEE Xplore <FaExternalLinkAlt />
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {moreLikeThis.length > 0 && (
+        <section className="nx-rail">
+          <h2 className="nx-rail-title">More Like This</h2>
+          <div className="nx-shelf">
+            {moreLikeThis.map((project) => (
+              <article key={project.title} className="nx-poster project-poster">
+                <div
+                  className="nx-poster-art project-poster-art"
+                  style={{ backgroundImage: `url(${project.image.url})` }}
+                >
+                  <div className="nx-poster-overlay">
+                    <span className="nx-play-circle">
+                      <FaPlay />
+                    </span>
+                  </div>
+                </div>
+                <div className="nx-poster-body">
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
                   <div className="project-poster-tech">

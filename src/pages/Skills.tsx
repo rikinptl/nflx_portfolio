@@ -9,6 +9,7 @@ import {
   FaLightbulb,
   FaSearch,
   FaCloud,
+  FaPlay,
 } from 'react-icons/fa';
 import { SiMicrosoftazure, SiGooglecloud } from 'react-icons/si';
 import { Skill } from '../types';
@@ -27,6 +28,9 @@ const iconMap: { [key: string]: IconType } = {
   SiGooglecloud: SiGooglecloud,
   cloud: FaCloud,
 };
+
+const SKILLS_HERO =
+  'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=80';
 
 const Skills: React.FC = () => {
   const [skillsData, setSkillsData] = useState<Skill[]>([]);
@@ -49,28 +53,47 @@ const Skills: React.FC = () => {
   }, {});
 
   const topSkills = skillsData.slice(0, 5);
+  const featured = topSkills[0];
+  const FeaturedIcon = iconMap[featured.icon] || FaLightbulb;
 
   return (
-    <div className="skills-page">
-      <header className="nx-page-header">
-        <p className="nx-kicker">BROWSE BY GENRE</p>
-        <h1 className="nx-title">Skills</h1>
-        <p className="nx-synopsis">
-          A shelf of tools, stacks, and strengths — hover a title for the synopsis.
-        </p>
-      </header>
+    <div className="nx-page skills-page">
+      <section className="nx-billboard" style={{ backgroundImage: `url(${SKILLS_HERO})` }}>
+        <div className="nx-billboard-shade" />
+        <div className="nx-billboard-content">
+          <p className="nx-original">BROWSE BY GENRE</p>
+          <h1 className="nx-billboard-title">{featured.name}</h1>
+          <div className="nx-meta">
+            <span className="nx-match">Top Skill</span>
+            <span className="nx-chip">HD</span>
+            <span className="nx-muted">{featured.category}</span>
+          </div>
+          <p className="nx-billboard-synopsis">{featured.description}</p>
+          <div className="nx-actions">
+            <span className="nx-btn nx-btn-play">
+              <FaPlay /> Featured
+            </span>
+            <span className="nx-btn nx-btn-secondary">
+              <FeaturedIcon /> {featured.category}
+            </span>
+          </div>
+        </div>
+      </section>
 
-      <section className="skills-rail">
-        <h2 className="rail-title">Top 5 · Today</h2>
-        <div className="top10-row">
+      <section className="nx-rail">
+        <h2 className="nx-rail-title">Top 5 · Today</h2>
+        <div className="nx-shelf">
           {topSkills.map((skill, index) => {
             const Icon = iconMap[skill.icon] || FaLightbulb;
             return (
-              <div key={skill.name} className="top10-card">
-                <span className="top10-rank">{index + 1}</span>
-                <div className="top10-body">
-                  <Icon className="top10-icon" />
-                  <p>{skill.name}</p>
+              <div key={skill.name} className="nx-top10">
+                <span className="nx-top10-rank" aria-hidden="true">
+                  {index + 1}
+                </span>
+                <div className="nx-top10-card">
+                  <Icon />
+                  <h3>{skill.name}</h3>
+                  <p>{skill.category}</p>
                 </div>
               </div>
             );
@@ -79,9 +102,9 @@ const Skills: React.FC = () => {
       </section>
 
       {Object.keys(skillsByCategory).map((category) => (
-        <section key={category} className="skills-rail">
-          <h2 className="rail-title">{category}</h2>
-          <div className="skills-shelf">
+        <section key={category} className="nx-rail">
+          <h2 className="nx-rail-title">{category}</h2>
+          <div className="nx-shelf">
             {skillsByCategory[category].map((skill) => {
               const Icon = iconMap[skill.icon] || FaLightbulb;
               const isActive = active === skill.name;
@@ -95,7 +118,12 @@ const Skills: React.FC = () => {
                   onFocus={() => setActive(skill.name)}
                   onBlur={() => setActive(null)}
                 >
-                  <Icon className="skill-tile-icon" />
+                  <div className="skill-tile-art">
+                    <Icon />
+                    <span className="nx-play-circle skill-play">
+                      <FaPlay />
+                    </span>
+                  </div>
                   <h3>{skill.name}</h3>
                   <p className={`skill-tile-desc ${isActive ? 'show' : ''}`}>
                     {skill.description}

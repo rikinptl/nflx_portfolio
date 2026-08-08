@@ -173,26 +173,34 @@ export const mockProjects: Project[] = [
     title: "Enterprise Data Pipeline",
     description: "Scalable data pipeline solution for processing healthcare data at enterprise scale",
     techUsed: "AWS, Python, SQL, Apache Airflow",
-    image: { url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800" }
+    image: { url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800" },
+    category: "project",
   },
   {
     title: "Automation Framework",
     description: "Built automation frameworks to enhance operational efficiency and reduce manual work",
     techUsed: "Python, Automation Tools, Cloud Services",
-    image: { url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" }
+    image: { url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" },
+    category: "project",
   },
   {
-    title: "Research: Attention Detection",
-    description: "A Comprehensive Study on Techniques Utilized for Attention Detection in Human-Computer Interactions",
-    techUsed: "Machine Learning, Computer Vision, Research Methodologies",
-    image: { url: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800" }
+    title: "A Comprehensive Study on Techniques Utilized for Attention Detection",
+    description:
+      "IEEE publication surveying techniques for attention detection in human-computer interaction.",
+    techUsed: "IEEE, Machine Learning, Computer Vision, HCI",
+    image: { url: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800" },
+    link: "https://ieeexplore.ieee.org/abstract/document/9988691",
+    category: "publication",
   },
   {
-    title: "Facial Landmark Detection",
-    description: "Exploring Facial Landmark Detection Techniques for Attention Detection applications",
-    techUsed: "Computer Vision, Deep Learning, Python",
-    image: { url: "https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800" }
-  }
+    title: "Exploring Facial Landmark Detection Techniques for Attention Detection in Human-Computer Interactions",
+    description:
+      "IEEE publication exploring facial landmark detection methods for attention detection in HCI.",
+    techUsed: "IEEE, Computer Vision, Deep Learning, Python",
+    image: { url: "https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800" },
+    link: "https://ieeexplore.ieee.org/abstract/document/10104944",
+    category: "publication",
+  },
 ];
 
 export const mockWorkPermit: WorkPermit = {

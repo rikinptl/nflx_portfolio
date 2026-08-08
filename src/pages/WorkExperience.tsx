@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { MdOutlineWork as WorkIcon } from 'react-icons/md';
 import { IoSchool as SchoolIcon } from 'react-icons/io5';
+import { FaPlay } from 'react-icons/fa';
 import './WorkExperience.css';
 import { TimelineItem } from '../types';
 import { getTimeline } from '../queries/getTimeline';
+
+const CAREER_HERO =
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80';
 
 const WorkExperience: React.FC = () => {
   const [timeLineData, setTimeLineData] = useState<TimelineItem[] | null>(null);
@@ -84,25 +88,52 @@ const WorkExperience: React.FC = () => {
     );
   };
 
-  return (
-    <div className="work-experience-page">
-      <header className="nx-page-header">
-        <p className="nx-kicker">RIKIN ORIGINALS</p>
-        <h1 className="nx-title">Career Episodes</h1>
-        <p className="nx-synopsis">
-          Work seasons and education specials — tap an episode for the full synopsis.
-        </p>
-      </header>
+  const featured = work[0] || education[0];
 
-      <section className="episode-section">
-        <h2 className="rail-title">Season 1 · Professional</h2>
+  return (
+    <div className="nx-page work-experience-page">
+      <section className="nx-billboard" style={{ backgroundImage: `url(${CAREER_HERO})` }}>
+        <div className="nx-billboard-shade" />
+        <div className="nx-billboard-content">
+          <p className="nx-original">RIKIN ORIGINALS</p>
+          <h1 className="nx-billboard-title">Career Episodes</h1>
+          <div className="nx-meta">
+            <span className="nx-match">Now Playing</span>
+            <span className="nx-chip">S1</span>
+            <span className="nx-chip">HD</span>
+            {featured ? (
+              <span className="nx-muted">
+                {featured.timelineType === 'work' ? featured.title : featured.name}
+              </span>
+            ) : null}
+          </div>
+          <p className="nx-billboard-synopsis">
+            Work seasons and education specials — tap an episode for the full synopsis.
+          </p>
+          <div className="nx-actions">
+            <button
+              type="button"
+              className="nx-btn nx-btn-play"
+              onClick={() => setOpenIndex(0)}
+            >
+              <FaPlay /> Resume
+            </button>
+            <span className="nx-btn nx-btn-secondary">
+              {work.length} Episodes
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section className="nx-rail episode-section">
+        <h2 className="nx-rail-title">Season 1 · Professional</h2>
         <div className="episode-list">
           {work.map((item, i) => renderEpisode(item, i, `S1 E${i + 1}`))}
         </div>
       </section>
 
-      <section className="episode-section">
-        <h2 className="rail-title">Specials · Education</h2>
+      <section className="nx-rail episode-section">
+        <h2 className="nx-rail-title">Specials · Education</h2>
         <div className="episode-list">
           {education.map((item, i) =>
             renderEpisode(item, work.length + i, `SP ${i + 1}`)

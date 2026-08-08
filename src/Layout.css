@@ -1,0 +1,10 @@
+.nx-layout {
+  min-height: 100vh;
+  background: #141414;
+  color: #fff;
+}
+
+.nx-layout .content {
+  min-height: 100vh;
+  background: #141414;
+}

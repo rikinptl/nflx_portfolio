@@ -1,0 +1,329 @@
+/* Shared Netflix UI language for every subpage */
+
+.nx-page {
+  min-height: 100vh;
+  background: #141414;
+  color: #fff;
+  padding-bottom: 3.5rem;
+}
+
+.nx-billboard {
+  position: relative;
+  min-height: min(68vh, 560px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  background-size: cover;
+  background-position: center;
+}
+
+.nx-billboard-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(20, 20, 20, 0.96) 0%, rgba(20, 20, 20, 0.72) 42%, rgba(20, 20, 20, 0.2) 72%, transparent 100%),
+    linear-gradient(0deg, #141414 0%, rgba(20, 20, 20, 0.45) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+.nx-billboard-content {
+  position: relative;
+  z-index: 1;
+  width: min(640px, 100%);
+  padding: 5.5rem 3rem 2.5rem;
+  animation: nxRise 0.65s ease-out;
+}
+
+.nx-original {
+  display: inline-block;
+  margin: 0 0 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.28em;
+  color: #e50914;
+  text-transform: uppercase;
+}
+
+.nx-billboard-title {
+  margin: 0 0 0.85rem;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.nx-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  align-items: center;
+  margin-bottom: 0.95rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.nx-match {
+  color: #46d369;
+}
+
+.nx-chip {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+  padding: 0.08rem 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.nx-muted {
+  color: #b3b3b3;
+  font-weight: 600;
+}
+
+.nx-billboard-synopsis {
+  margin: 0 0 1.25rem;
+  max-width: 34rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: #d2d2d2;
+}
+
+.nx-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.nx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1.35rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.nx-btn-play {
+  background: #fff;
+  color: #141414;
+}
+
+.nx-btn-play:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.nx-btn-secondary {
+  background: rgba(109, 109, 110, 0.7);
+  color: #fff;
+}
+
+.nx-btn-secondary:hover {
+  background: rgba(109, 109, 110, 0.95);
+}
+
+.nx-rail {
+  margin-top: 1.75rem;
+  animation: nxRise 0.7s ease-out both;
+}
+
+.nx-rail-title {
+  margin: 0 0 0.85rem;
+  padding: 0 3rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #e5e5e5;
+}
+
+.nx-shelf {
+  display: flex;
+  gap: 0.85rem;
+  overflow-x: auto;
+  padding: 0.35rem 3rem 1.4rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nx-shelf::-webkit-scrollbar {
+  display: none;
+}
+
+.nx-poster {
+  position: relative;
+  flex: 0 0 auto;
+  width: min(220px, 70vw);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  transform-origin: center bottom;
+}
+
+.nx-poster:hover {
+  transform: scale(1.08);
+  border-color: rgba(229, 9, 20, 0.55);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  z-index: 3;
+}
+
+.nx-poster-art {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background:
+    radial-gradient(circle at 80% 0%, rgba(229, 9, 20, 0.45), transparent 50%),
+    linear-gradient(160deg, #2a1012, #141414 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nx-poster-art svg {
+  font-size: 2.4rem;
+  color: #e50914;
+}
+
+.nx-poster-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.nx-poster:hover .nx-poster-overlay {
+  opacity: 1;
+}
+
+.nx-play-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 20, 20, 0.55);
+  font-size: 0.95rem;
+}
+
+.nx-poster-body {
+  padding: 0.85rem 0.9rem 1rem;
+}
+
+.nx-poster-body h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.nx-poster-body p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #999;
+  line-height: 1.35;
+}
+
+.nx-top10 {
+  display: flex;
+  align-items: stretch;
+  flex: 0 0 auto;
+  width: min(280px, 78vw);
+  height: 170px;
+  background: transparent;
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.nx-top10:hover {
+  transform: scale(1.04);
+  z-index: 2;
+}
+
+.nx-top10-rank {
+  align-self: flex-end;
+  margin-right: -0.5rem;
+  font-size: 7.2rem;
+  font-weight: 900;
+  line-height: 0.78;
+  color: #141414;
+  -webkit-text-stroke: 3px #e50914;
+  paint-order: stroke fill;
+  user-select: none;
+}
+
+.nx-top10-card {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 1rem;
+  border-radius: 4px;
+  background: linear-gradient(160deg, #2a1012 0%, #1a1a1a 70%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.nx-top10-card svg {
+  font-size: 1.6rem;
+  color: #e50914;
+}
+
+.nx-top10-card h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.nx-top10-card p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.nx-section-pad {
+  padding: 5.5rem 3rem 0;
+}
+
+@media (max-width: 768px) {
+  .nx-billboard-content,
+  .nx-rail-title,
+  .nx-section-pad {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .nx-shelf {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .nx-billboard {
+    min-height: min(62vh, 480px);
+  }
+
+  .nx-top10-rank {
+    font-size: 5.4rem;
+    -webkit-text-stroke: 2px #e50914;
+  }
+}

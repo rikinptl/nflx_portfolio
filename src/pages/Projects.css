@@ -1,98 +1,8 @@
-.nx-loading {
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #141414;
-  color: #999;
-}
-
-.projects-page {
-  min-height: 100vh;
-  background: #141414;
-  color: #fff;
-  padding-bottom: 3rem;
-}
-
-.project-featured {
-  position: relative;
-  min-height: min(72vh, 640px);
-  display: flex;
-  align-items: flex-end;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-}
-
-.project-featured-shade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(20, 20, 20, 0.95) 0%, rgba(20, 20, 20, 0.65) 45%, transparent 78%),
-    linear-gradient(0deg, #141414 0%, rgba(20, 20, 20, 0.45) 40%, transparent 70%);
-}
-
-.project-featured-content {
-  position: relative;
-  z-index: 1;
-  width: min(680px, 100%);
-  padding: 5.5rem 3rem 2.5rem;
-  animation: nxRise 0.65s ease-out;
-}
-
-.projects-page .nx-kicker {
-  margin: 0 0 0.55rem;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  color: #e50914;
-}
-
-.project-featured-title {
-  margin: 0 0 0.85rem;
-  font-size: clamp(2.2rem, 6vw, 3.8rem);
-  font-weight: 900;
-  line-height: 0.98;
-  letter-spacing: -0.03em;
-}
-
-.project-featured-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem 0.75rem;
-  align-items: center;
-  margin-bottom: 0.9rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.project-featured-meta .match {
-  color: #46d369;
-}
-
-.project-featured-meta .badge {
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 2px;
-  padding: 0.1rem 0.35rem;
-  font-size: 0.72rem;
-}
-
-.project-featured-meta .genre {
-  color: #d2d2d2;
-}
-
-.project-featured-synopsis {
-  margin: 0 0 1rem;
-  max-width: 34rem;
-  font-size: 1.05rem;
-  line-height: 1.5;
-  color: #d2d2d2;
-}
-
 .project-featured-tech {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .project-featured-tech span {
@@ -106,77 +16,21 @@
   color: #e5e5e5;
 }
 
-.projects-rail {
-  padding: 1.5rem 0 0;
-  animation: nxRise 0.75s ease-out 0.1s both;
-}
-
-.projects-rail .rail-title {
-  margin: 0 0 0.9rem;
-  padding: 0 3rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #e5e5e5;
-}
-
-.projects-shelf {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding: 0.25rem 3rem 1rem;
-  scrollbar-width: none;
-}
-
-.projects-shelf::-webkit-scrollbar {
-  display: none;
-}
-
 .project-poster {
-  flex: 0 0 auto;
-  width: min(300px, 78vw);
-  border-radius: 6px;
-  overflow: hidden;
-  background: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
-
-.project-poster:hover {
-  transform: scale(1.03);
-  border-color: rgba(229, 9, 20, 0.45);
+  width: min(280px, 78vw);
 }
 
 .project-poster-art {
-  height: 160px;
+  aspect-ratio: 16 / 10;
   background-size: cover;
   background-position: center;
-}
-
-.project-poster-info {
-  padding: 0.9rem 1rem 1.1rem;
-}
-
-.project-poster-info h3 {
-  margin: 0 0 0.4rem;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.project-poster-info p {
-  margin: 0 0 0.7rem;
-  font-size: 0.85rem;
-  line-height: 1.4;
-  color: #999;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 .project-poster-tech {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
+  margin-top: 0.65rem;
 }
 
 .project-poster-tech span {
@@ -188,30 +42,33 @@
   padding: 0.15rem 0.4rem;
 }
 
-@keyframes nxRise {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.projects-page .nx-poster-body p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-@media (max-width: 768px) {
-  .project-featured-content,
-  .projects-rail .rail-title {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
+.pub-badge {
+  position: absolute;
+  top: 0.65rem;
+  left: 0.65rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 2px;
+  background: #e50914;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  z-index: 1;
+}
 
-  .projects-shelf {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  .project-featured {
-    min-height: min(68vh, 520px);
-  }
+.pub-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #e50914;
 }

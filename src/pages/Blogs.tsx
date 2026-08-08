@@ -1,102 +1,153 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Blogs.css';
-import { FaDev } from 'react-icons/fa';
+import { FaDev, FaPlay } from 'react-icons/fa';
+import { DevToArticle, getDevToArticles } from '../queries/getDevToArticles';
 
-interface BlogPost {
-  title: string;
-  link: string;
-  description: string;
-  runtime: string;
-}
-
-const blogs: BlogPost[] = [
-  {
-    title: 'Human-Aligned Decision Transformers for Satellite Anomaly Response Operations',
-    link: 'https://dev.to/rikinptl/human-aligned-decision-transformers-for-satellite-anomaly-response-operations-under-1l6l',
-    description:
-      'Exploring how transformer-based sequential decision-making can bridge the gap between AI optimization and human values in critical satellite operations.',
-    runtime: '12 min',
-  },
-  {
-    title: 'Building Scalable ETL Pipelines: Teradata to GCP Migration',
-    link: 'https://dev.to/rikinptl',
-    description:
-      'Migrating multi-terabyte datasets from Teradata to GCP with latency cuts and cloud cost savings.',
-    runtime: '10 min',
-  },
-  {
-    title: 'Automated Data Quality Validation with Apache Airflow',
-    link: 'https://dev.to/rikinptl',
-    description:
-      'Designing end-to-end validation pipelines that catch anomalies before they hit production.',
-    runtime: '8 min',
-  },
-  {
-    title: 'Creating Data Lineage Frameworks for Analytics Teams',
-    link: 'https://dev.to/rikinptl',
-    description:
-      'Automated metadata extraction and lineage that cuts troubleshooting time for analytics teams.',
-    runtime: '9 min',
-  },
-  {
-    title: 'Optimizing Cloud Storage Costs with Automated File Cleanup',
-    link: 'https://dev.to/rikinptl',
-    description:
-      'Custom Airflow DAGs that clear stale data and trim monthly storage spend.',
-    runtime: '7 min',
-  },
-  {
-    title: 'Attention Detection in Human-Computer Interactions',
-    link: 'https://dev.to/rikinptl',
-    description:
-      'A study of facial landmark and computer-vision techniques for attention detection in HCI.',
-    runtime: '11 min',
-  },
-];
+const FALLBACK_HERO =
+  'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&q=80';
 
 const Blogs: React.FC = () => {
-  return (
-    <div className="blogs-page">
-      <header className="nx-page-header">
-        <p className="nx-kicker">NEW RELEASES</p>
-        <h1 className="nx-title">Articles</h1>
-        <p className="nx-synopsis">
-          Essays and tutorials on data engineering, AI research, and automation.
-        </p>
-      </header>
+  const [blogs, setBlogs] = useState<DevToArticle[]>([]);
+  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [errorMessage, setErrorMessage] = useState('');
 
-      <div className="blog-episode-list">
-        {blogs.map((blog, index) => (
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadArticles() {
+      try {
+        const articles = await getDevToArticles(5);
+        if (cancelled) return;
+        setBlogs(articles);
+        setStatus('ready');
+      } catch (error) {
+        if (cancelled) return;
+        setStatus('error');
+        setErrorMessage(error instanceof Error ? error.message : 'Unable to load articles');
+      }
+    }
+
+    loadArticles();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (status === 'loading') {
+    return <div className="nx-loading">Loading latest episodes...</div>;
+  }
+
+  const featured = blogs[0];
+
+  return (
+    <div className="nx-page blogs-page">
+      {status === 'ready' && featured ? (
+        <section
+          className="nx-billboard"
+          style={{
+            backgroundImage: `url(${featured.image || FALLBACK_HERO})`,
+          }}
+        >
+          <div className="nx-billboard-shade" />
+          <div className="nx-billboard-content">
+            <p className="nx-original">NEW RELEASES</p>
+            <h1 className="nx-billboard-title">{featured.title}</h1>
+            <div className="nx-meta">
+              <span className="nx-match">New Episode</span>
+              <span className="nx-chip">{featured.runtime}</span>
+              <span className="nx-chip">HD</span>
+              <span className="nx-muted">Dev.to</span>
+            </div>
+            <p className="nx-billboard-synopsis">{featured.description}</p>
+            <div className="nx-actions">
+              <a
+                className="nx-btn nx-btn-play"
+                href={featured.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaPlay /> Play
+              </a>
+              <a
+                className="nx-btn nx-btn-secondary"
+                href="https://dev.to/rikinptl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaDev /> More Info
+              </a>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <header className="nx-section-pad">
+          <p className="nx-original">NEW RELEASES</p>
+          <h1 className="nx-billboard-title">Articles</h1>
+        </header>
+      )}
+
+      {status === 'error' ? (
+        <div className="blogs-error">
+          <p>{errorMessage}</p>
           <a
-            key={blog.title}
-            href={blog.link}
+            href="https://dev.to/rikinptl"
             target="_blank"
             rel="noopener noreferrer"
-            className="blog-episode"
-            style={{ animationDelay: `${index * 0.06}s` }}
+            className="nx-btn nx-btn-secondary"
           >
-            <div className="blog-episode-index">{String(index + 1).padStart(2, '0')}</div>
-            <div className="blog-episode-thumb" aria-hidden="true">
-              <FaDev />
-            </div>
-            <div className="blog-episode-body">
-              <div className="blog-episode-top">
-                <h3>{blog.title}</h3>
-                <span className="blog-runtime">{blog.runtime}</span>
-              </div>
-              <p>{blog.description}</p>
-              <span className="blog-platform">Dev.to · Play episode</span>
-            </div>
+            Open Dev.to
           </a>
-        ))}
-      </div>
+        </div>
+      ) : (
+        <section className="nx-rail">
+          <h2 className="nx-rail-title">Episodes · Latest 5</h2>
+          <div className="blog-episode-list">
+            {blogs.map((blog, index) => (
+              <a
+                key={blog.link || blog.title}
+                href={blog.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="blog-episode"
+                style={{ animationDelay: `${index * 0.06}s` }}
+              >
+                <div className="blog-episode-index">
+                  {String(index + 1).padStart(2, '0')}
+                </div>
+                <div
+                  className="blog-episode-thumb"
+                  aria-hidden="true"
+                  style={
+                    blog.image
+                      ? { backgroundImage: `url(${blog.image})` }
+                      : undefined
+                  }
+                >
+                  {!blog.image && <FaDev />}
+                  <span className="blog-play-hint">
+                    <FaPlay />
+                  </span>
+                </div>
+                <div className="blog-episode-body">
+                  <div className="blog-episode-top">
+                    <h3>{blog.title}</h3>
+                    <span className="blog-runtime">{blog.runtime}</span>
+                  </div>
+                  <p>{blog.description}</p>
+                  <span className="blog-platform">Dev.to · Play episode</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div className="blogs-footer">
         <a
           href="https://dev.to/rikinptl"
           target="_blank"
           rel="noopener noreferrer"
-          className="blogs-more"
+          className="nx-btn nx-btn-secondary"
         >
           See all on Dev.to
         </a>

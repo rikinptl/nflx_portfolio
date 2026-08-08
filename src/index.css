@@ -1,12 +1,107 @@
+:root {
+  --nx-bg: #141414;
+  --nx-bg-elevated: #1a1a1a;
+  --nx-bg-hover: #232323;
+  --nx-red: #e50914;
+  --nx-red-hover: #b81d24;
+  --nx-text: #ffffff;
+  --nx-text-muted: #b3b3b3;
+  --nx-text-dim: #999999;
+  --nx-border: rgba(255, 255, 255, 0.08);
+  --nx-secondary: rgba(109, 109, 110, 0.7);
+  --nx-font: 'Netflix Sans', Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: 'Netflix Sans',Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+  font-family: var(--nx-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #141414;
+  background-color: var(--nx-bg);
+  color: var(--nx-text);
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(229, 9, 20, 0.85);
+  color: #fff;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Shared Netflix page primitives */
+.nx-loading {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--nx-bg);
+  color: var(--nx-text-dim);
+  font-family: var(--nx-font);
+}
+
+.nx-page-header .nx-kicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: var(--nx-red);
+  text-transform: uppercase;
+}
+
+.nx-page-header .nx-title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--nx-text);
+}
+
+.nx-page-header .nx-synopsis {
+  margin: 0;
+  max-width: 36rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--nx-text-muted);
+}
+
+.rail-title {
+  margin: 0 0 0.85rem;
+  padding: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--nx-text);
+}
+
+@keyframes nxRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

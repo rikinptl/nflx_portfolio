@@ -1,69 +1,26 @@
-.reading-page {
-  min-height: 100vh;
-  padding: 5.5rem 0 3.5rem;
-  background: #141414;
-  color: #fff;
+.reading-page .nx-billboard {
+  background-position: top center;
 }
 
-.reading-page .nx-page-header {
-  padding: 0 3rem;
-  max-width: 820px;
-  margin-bottom: 2rem;
-  animation: nxRise 0.6s ease-out;
+.reading-top-card {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.65rem !important;
 }
 
-.reading-page .nx-kicker {
-  margin: 0 0 0.5rem;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  color: #e50914;
-}
-
-.reading-page .nx-title {
-  margin: 0 0 0.75rem;
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-
-.reading-page .nx-synopsis {
-  margin: 0;
-  max-width: 36rem;
-  font-size: 1.05rem;
-  line-height: 1.5;
-  color: #b3b3b3;
-}
-
-.reading-rail {
-  margin-bottom: 1.75rem;
-  animation: nxRise 0.7s ease-out both;
-}
-
-.reading-rail .rail-title {
-  margin: 0 0 0.85rem;
-  padding: 0 3rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #e5e5e5;
-}
-
-.book-shelf {
-  display: flex;
-  gap: 0.9rem;
-  overflow-x: auto;
-  padding: 0.25rem 3rem 1rem;
-  scrollbar-width: none;
-}
-
-.book-shelf::-webkit-scrollbar {
-  display: none;
+.reading-top-card img {
+  width: 52px;
+  height: 78px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
 }
 
 .book-poster {
   flex: 0 0 auto;
   width: 150px;
+  color: #fff;
 }
 
 .book-cover-wrap {
@@ -72,11 +29,11 @@
   overflow: hidden;
   margin-bottom: 0.6rem;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
-  transition: transform 0.2s ease;
+  transition: transform 0.22s ease;
 }
 
 .book-poster:hover .book-cover-wrap {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .book-cover {
@@ -91,9 +48,12 @@
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.55rem;
   padding: 0.75rem;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, transparent 65%);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.2) 65%);
   opacity: 0;
   transition: opacity 0.2s ease;
 }
@@ -104,9 +64,13 @@
 
 .book-overlay p {
   margin: 0;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   line-height: 1.35;
   color: #e5e5e5;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .book-poster h3 {
@@ -122,29 +86,7 @@
   color: #999;
 }
 
-@keyframes nxRise {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (max-width: 768px) {
-  .reading-page .nx-page-header,
-  .reading-rail .rail-title {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  .book-shelf {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
   .book-poster {
     width: 130px;
   }
